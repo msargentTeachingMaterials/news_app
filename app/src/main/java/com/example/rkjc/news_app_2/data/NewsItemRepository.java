@@ -1,7 +1,7 @@
 package com.example.rkjc.news_app_2.data;
 
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.LiveData;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -19,7 +19,7 @@ public class NewsItemRepository {
 
 
     private NewsItemRepository(Application application){
-        NewsItemRoomDatabase db = NewsItemRoomDatabase.getDatabase(application.getApplicationContext());
+        NewsItemRoomDatabase db = NewsItemRoomDatabase.Companion.getDatabase(application.getApplicationContext());
         mNewsItemDao = db.newsItemDao();
         mAllNewsItems = mNewsItemDao.loadAllNewsItems();
     }

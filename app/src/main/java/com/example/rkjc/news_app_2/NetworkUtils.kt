@@ -31,7 +31,7 @@ private val retrofit = Retrofit.Builder()
 
 interface NewsApiService{
     // TODO implement api key hiding in build.gradle
-    @GET("articles?=the-next-web&apiKey=027ae063a4b145d9a7dbf456b328d889")
+    @GET("articles?=the-next-web&apiKey=putyourapikeyhere")
     fun getNewsItems(): Deferred<Articles>
 }
 

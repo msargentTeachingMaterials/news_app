@@ -8,19 +8,10 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 
-import com.example.rkjc.news_app_2.data.NewsItemRepository
-import com.example.rkjc.news_app_2.data.NewsItemViewModel
 import com.example.rkjc.news_app_2.databinding.ActivityMainBinding
-import com.example.rkjc.news_app_2.sync.SyncUtilities
 import android.content.Intent
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.net.Uri
-import com.example.rkjc.news_app_2.data.NewsItem
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,12 +27,11 @@ class MainActivity : AppCompatActivity() {
         })
 
         binding.newsRecyclerview.adapter = adapter
-        viewModel.allNewsItems.observe(this, Observer {
+        viewModel.newsItems.observe(this, Observer {
             it?.let{
                 adapter.submitList(it)
             }
         })
-        SyncUtilities.scheduleAPISync(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -53,11 +43,11 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val itemThatWasClickedId = item.itemId
 
-        if (itemThatWasClickedId == R.id.action_search) {
-            val repository = NewsItemRepository.getInstance(this.application)
-            repository.syncWithAPI()
-            return true
-        }
+//        if (itemThatWasClickedId == R.id.action_search) {
+//            val repository = NewsItemRepository.getInstance(this.application)
+//            repository.syncWithAPI()
+//            return true
+//        }
 
         return super.onOptionsItemSelected(item)
     }

@@ -1,8 +1,14 @@
-package com.example.rkjc.news_app_2.data
+package com.example.rkjc.news_app_2
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.squareup.moshi.Json
+
+
+data class Articles(
+        val articles: List<NewsItem>
+)
 
 @Entity(tableName = "news_item")
 data class NewsItem (
@@ -17,12 +23,12 @@ data class NewsItem (
     var description: String? = null,
 
     @ColumnInfo(name = "time")
-    var time: String? = null,
+    @Json(name = "publishedAt") var time: String? = null,
 
     @ColumnInfo(name = "url")
     var url: String? = null,
 
     @ColumnInfo(name = "thumbURL")
-    var thumbURL: String? = null
+    @Json(name = "urlToImage") var thumbURL: String? = null
 
 )

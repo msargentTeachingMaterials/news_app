@@ -1,13 +1,13 @@
 package com.example.rkjc.news_app_2
 
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.rkjc.news_app_2.data.NewsItem
 import com.example.rkjc.news_app_2.databinding.NewsItemBinding
-import com.squareup.picasso.Picasso
+
 
 
 class NewsRecyclerViewAdapter(val listener: NewsItemListener) : ListAdapter<NewsItem, NewsRecyclerViewAdapter.NewsViewHolder>(NewsItemDiffCallback()) {
@@ -24,12 +24,7 @@ class NewsRecyclerViewAdapter(val listener: NewsItemListener) : ListAdapter<News
         fun bind(newsItem: NewsItem, listener: NewsItemListener) {
             binding.item = newsItem
             binding.listener = listener
-
-
-            if (newsItem.thumbURL != null && !newsItem.thumbURL!!.isEmpty())
-                Picasso.get()
-                        .load(newsItem.thumbURL)
-                        .into(binding.img)
+            binding.executePendingBindings()
 
         }
 
@@ -55,6 +50,6 @@ class NewsItemDiffCallback : DiffUtil.ItemCallback<NewsItem>(){
 
 }
 
-class NewsItemListener(val clickListener: (newsItem:NewsItem) -> Unit){
+class NewsItemListener(val clickListener: (newsItem: NewsItem) -> Unit){
     fun onClick(item: NewsItem) = clickListener(item)
 }

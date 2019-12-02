@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 class NewsItemViewModel : ViewModel() {
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-    val _newsItems = MutableLiveData<List<NewsItem>>()
+    private val _newsItems = MutableLiveData<List<NewsItem>>()
 
     val newsItems: LiveData<List<NewsItem>>
     get() = _newsItems

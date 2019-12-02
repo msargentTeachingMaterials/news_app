@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         binding.newsRecyclerview.adapter = adapter
+
         viewModel.newsItems.observe(this, Observer {
             it?.let{
                 adapter.submitList(it)

@@ -9,8 +9,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-
-
 private const val BASE_URL = "https://newsapi.org/v1/"
 
 //add moshi object
@@ -31,7 +29,7 @@ private val retrofit = Retrofit.Builder()
 
 interface NewsApiService{
     // TODO implement api key hiding in build.gradle
-    @GET("articles?=the-next-web&apiKey=")
+    @GET("articles?=the-next-web&apiKey=${Constants.API_KEY}")
     fun getNewsItems(): Deferred<Articles>
 }
 

@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.newsRecyclerview.layoutManager = LinearLayoutManager(this)
-        val viewModel = ViewModelProviders.of(this).get(NewsItemViewModel::class.java)
+        val viewModel = ViewModelProviders.of(this, NewsItemViewModelFactory(application)).get(NewsItemViewModel::class.java)
         val adapter = NewsRecyclerViewAdapter(NewsItemListener{
             it?.let{startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it.url)))}
         })

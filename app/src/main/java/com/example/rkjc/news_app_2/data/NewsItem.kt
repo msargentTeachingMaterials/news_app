@@ -1,4 +1,4 @@
-package com.example.rkjc.news_app_2
+package com.example.rkjc.news_app_2.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
 
-data class Articles(
-        val articles: List<NewsItem>
+data class Article(
+    var articles: List<NewsItem>
 )
 
 @Entity(tableName = "news_item")

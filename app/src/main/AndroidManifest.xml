@@ -19,8 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".sync.NewsSyncFirebaseJobService"/>
-        <service android:name=".sync.CancelNotificationService"/>
+<!--        <service android:name=".sync.NewsSyncFirebaseJobService"/>-->
+<!--        <service android:name=".sync.CancelNotificationService"/>-->
     </application>
 
 </manifest>

@@ -1,19 +1,24 @@
 package com.example.rkjc.news_app_2
 
+
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.rkjc.news_app_2.data.NewsItem
+import com.example.rkjc.news_app_2.data.NewsItemRoomDatabase
+import com.example.rkjc.news_app_2.data.Repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 
-class NewsItemViewModel : ViewModel() {
+class NewsItemViewModel(application: Application): ViewModel() {
+    private val repository = Repository(NewsItemRoomDatabase.getDatabase(application))
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-    private val _newsItems = MutableLiveData<List<NewsItem>>()
+    private val _newsItems = repository.newsItems
 
     val newsItems: LiveData<List<NewsItem>>
     get() = _newsItems
@@ -22,31 +27,27 @@ class NewsItemViewModel : ViewModel() {
         getNewsItems()
     }
 
-    private var _status = MutableLiveData<String>()
-
-    private fun getNewsItems(){
-        coroutineScope.launch{
-            var getNewsItemsDeferred = NewsApi.retrofitService.getNewsItems()
+    private fun getNewsItems() {
+        coroutineScope.launch {
             try{
-                var data = getNewsItemsDeferred.await()
-                _newsItems.value = data.articles
-                val item : NewsItem? = data?.articles?.get(0)
-                _status.value = "Success: ${data?.articles?.size} news items"
-                Log.i("NewsItemViewModel", "Success: ${data?.articles?.size} news items")
-                Log.i("NewsItemViewModel", "Title: " + item?.title)
-
-            }catch (e: Exception){
-                Log.e("NewsItemViewModel", "Failure: " + e.message)
-                _status.value = "Failure: " + e.message
+                repository.refreshNewsItems()
+                Log.d("NewsItemViewModel", "ThumbUrl is null: ${_newsItems.value?.get(0)?.thumbURL == null}")
+            }catch(e: Exception){
+                Log.e("NewsItemViewModel", e.message)
             }
+
         }
+
     }
+
 
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
     }
 }
+
+
 
 //private fun getNewsItems(){
 //    NewsApi.retrofitService.getNewsItems().enqueue(

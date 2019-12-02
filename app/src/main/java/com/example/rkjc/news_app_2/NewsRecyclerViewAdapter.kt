@@ -1,11 +1,11 @@
 package com.example.rkjc.news_app_2
 
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import com.example.rkjc.news_app_2.data.NewsItem
 import com.example.rkjc.news_app_2.databinding.NewsItemBinding
 
 

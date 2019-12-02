@@ -8,7 +8,7 @@
     <data>
         <variable
             name="item"
-            type="com.example.rkjc.news_app_2.NewsItem"/>
+            type="com.example.rkjc.news_app_2.data.NewsItem"/>
         <variable
             name="listener"
             type="com.example.rkjc.news_app_2.NewsItemListener"/>

@@ -73,6 +73,10 @@ dependencies {
     // RecyclerView
     implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
 
+    //WorkManager
+    def work_version = "1.0.1"
+    implementation "android.arch.work:work-runtime-ktx:$work_version"
+
 }
 repositories {
     mavenCentral()

@@ -17,28 +17,10 @@ import kotlinx.coroutines.launch
 class NewsItemViewModel(application: Application): ViewModel() {
     private val repository = Repository(NewsItemRoomDatabase.getDatabase(application))
     private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
     private val _newsItems = repository.newsItems
 
     val newsItems: LiveData<List<NewsItem>>
     get() = _newsItems
-
-    init{
-        getNewsItems()
-    }
-
-    private fun getNewsItems() {
-        coroutineScope.launch {
-            try{
-                repository.refreshNewsItems()
-                Log.d("NewsItemViewModel", "ThumbUrl is null: ${_newsItems.value?.get(0)?.thumbURL == null}")
-            }catch(e: Exception){
-                Log.e("NewsItemViewModel", e.message)
-            }
-
-        }
-
-    }
 
 
     override fun onCleared() {

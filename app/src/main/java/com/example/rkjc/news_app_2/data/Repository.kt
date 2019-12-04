@@ -12,7 +12,7 @@ class Repository(private val database: NewsItemRoomDatabase){
         withContext(Dispatchers.IO){
             var getNewsItemsDeferred = NewsApi.retrofitService.getNewsItems()
             var data = getNewsItemsDeferred.await()
-            Log.d("Repository", "ThumbUrl is null: ${data.articles?.get(0)?.thumbURL == null}")
+
             database.newsItemDao().clearItems()
             database.newsItemDao().insert(data.articles)
 

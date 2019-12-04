@@ -35,22 +35,22 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return true
-    }
-
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val itemThatWasClickedId = item.itemId
-
-//        if (itemThatWasClickedId == R.id.action_search) {
-//            val repository = NewsItemRepository.getInstance(this.application)
-//            repository.syncWithAPI()
-//            return true
-//        }
-
-        return super.onOptionsItemSelected(item)
-    }
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        menuInflater.inflate(R.menu.main_menu, menu)
+//        return true
+//    }
+//
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        val itemThatWasClickedId = item.itemId
+//
+////        if (itemThatWasClickedId == R.id.action_search) {
+////            val repository = NewsItemRepository.getInstance(this.application)
+////            repository.syncWithAPI()
+////            return true
+////        }
+//
+//        return super.onOptionsItemSelected(item)
+//    }
 
 }

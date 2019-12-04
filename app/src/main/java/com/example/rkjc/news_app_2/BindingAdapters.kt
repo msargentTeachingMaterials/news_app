@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?){
-    Log.d("BindingAdapter", "imgUrl is null: ${imgUrl == null}")
     imgUrl?.let{
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
         Glide.with(imgView.context)

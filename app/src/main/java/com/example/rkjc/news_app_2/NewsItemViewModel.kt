@@ -16,17 +16,11 @@ import kotlinx.coroutines.launch
 
 class NewsItemViewModel(application: Application): ViewModel() {
     private val repository = Repository(NewsItemRoomDatabase.getDatabase(application))
-    private var viewModelJob = Job()
     private val _newsItems = repository.newsItems
 
     val newsItems: LiveData<List<NewsItem>>
     get() = _newsItems
 
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
 }
 
 

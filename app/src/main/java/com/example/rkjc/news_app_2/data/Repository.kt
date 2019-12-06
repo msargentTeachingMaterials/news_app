@@ -15,7 +15,6 @@ class Repository(private val database: NewsItemRoomDatabase){
 
             database.newsItemDao().clearItems()
             database.newsItemDao().insert(data.articles)
-
         }
     }
 
